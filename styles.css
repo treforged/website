@@ -96,16 +96,16 @@ nav.primary a:focus{
   border-radius:8px;
   touch-action:manipulation;
   z-index:90;
-  background:linear-gradient(135deg,var(--accent),var(--gold)); /* NEW background */
+  background:linear-gradient(135deg,var(--accent),var(--gold)); /* gradient background */
 }
 .hamburger:active{transform:translateY(1px)}
 .hamburger div{width:28px;height:3px;background:var(--header-text);border-radius:2px;}
 
 /* Mobile nav dropdown */
 #mobileNav{
-  position:absolute;   /* changed from fixed */
-  right:8px;           /* align to hamburger */
-  top:72px;            /* directly below header */
+  position:absolute;
+  right:8px;
+  top:72px;
   z-index:70;
   display:none;
   transition:all .25s;
@@ -151,7 +151,7 @@ nav.primary a:focus{
   width:220px;height:220px;border-radius:12px;
   border:6px solid rgba(58,12,163,0.09);
   box-shadow:0 12px 40px rgba(58,12,163,0.12);
-  background-size:cover !important;   /* ensure cover */
+  background-size:cover !important;
   background-repeat:no-repeat;
   background-position:center;
 }
@@ -171,7 +171,7 @@ nav.primary a:focus{
 }
 img.responsive {
   width:100%;
-  height:auto;          /* corrected scaling */
+  height:auto;
   object-fit:cover;
   display:block;
   background:transparent;
@@ -183,7 +183,7 @@ img.responsive {
 /* Home hero embedded image */
 .home-hero-image{
   width:100%;
-  height:auto;          /* corrected scaling */
+  height:auto;
   border-radius:12px;
   object-fit:cover;
   display:block;
@@ -209,4 +209,10 @@ footer.site-footer .container div{color:#dcd6ff}
   .hero{grid-template-columns:1fr; padding:40px 0}
   .hamburger{display:flex}
   nav.primary{display:none}
-  .founder{flex-direction
+  .founder{flex-direction:column}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:1fr}
+}
+
+/* reveal animations */
+.reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.
