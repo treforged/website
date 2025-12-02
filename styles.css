@@ -64,7 +64,7 @@ header.site-header{
   box-shadow:0 6px 20px rgba(10,8,20,0.18);
 }
 .site-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:14px; margin-left:8px;} /* added extra left spacing to match hamburger */
 .logo{
   width:48px;height:48px;
   background:linear-gradient(135deg,var(--accent),var(--gold));
