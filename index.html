@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tre Forged — Home</title>
 
-<!-- Favicon: simple SVG matching the TF logo (gradient + TF text) -->
+<!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%23b58bff'/><stop offset='1' stop-color='%23d4af37'/></linearGradient></defs><rect width='64' height='64' rx='10' fill='url(%23g)'/><text x='50%' y='56%' font-size='28' font-family='Inter,Arial,Helvetica,sans-serif' font-weight='700' text-anchor='middle' fill='%23111'>TF</text></svg>">
 
 <link rel="stylesheet" href="styles.css">
@@ -42,12 +42,6 @@
       <a href="contact.html" style="display:block;padding:10px;color:white;text-decoration:none">Contact</a>
     </div>
   </nav>
-
-  <style>
-    /* mobile nav styles (inline to ensure visibility) */
-    #mobileNav{position:fixed;left:0;right:0;top:72px;z-index:70;display:none;transition:all .25s}
-    #mobileNav.open{display:block}
-  </style>
 </header>
 
 <main class="container">
@@ -68,14 +62,17 @@
       <div class="hero-card reveal" style="position:relative;z-index:2">
         <h3>Featured Content</h3>
         <p>Video breakdowns, market commentary, and vehicle showcases focused on long-term value.</p>
-        <p style="margin-top:10px;font-weight:700;color:var(--purple-2)"><a href="https://www.instagram.com/stockchall/" target="_blank">Follow</a> · <a href="https://www.instagram.com/stockchall/" target="_blank">Watch</a> · <a href="https://www.instagram.com/stockchall/" target="_blank">Learn</a></p>
+        <p style="margin-top:10px;font-weight:700">
+          <a href="https://www.instagram.com/stockchall/" target="_blank">Follow</a> · 
+          <a href="https://www.instagram.com/stockchall/" target="_blank">Watch</a> · 
+          <a href="https://www.instagram.com/stockchall/" target="_blank">Learn</a>
+        </p>
       </div>
       <!-- Single high-resolution image -->
       <img 
         src="assets/car3.JPG" 
         alt="Featured car" 
-        class="home-hero-image reveal"
-        style="max-width:100%;height:auto">
+        class="home-hero-image reveal">
     </div>
   </section>
 
