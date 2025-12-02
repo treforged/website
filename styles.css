@@ -96,7 +96,7 @@ nav.primary a:focus{
   border-radius:8px;
   touch-action:manipulation;
   z-index:90;
-  background:linear-gradient(135deg,var(--accent),var(--gold)); /* gradient background */
+  background:transparent; /* transparent again */
 }
 .hamburger:active{transform:translateY(1px)}
 .hamburger div{width:28px;height:3px;background:var(--header-text);border-radius:2px;}
@@ -210,9 +210,4 @@ footer.site-footer .container div{color:#dcd6ff}
   .hamburger{display:flex}
   nav.primary{display:none}
   .founder{flex-direction:column}
-  .gallery{grid-template-columns:repeat(2,1fr)}
-  .grid-3{grid-template-columns:1fr}
-}
-
-/* reveal animations */
-.reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.
+  .gallery{grid
