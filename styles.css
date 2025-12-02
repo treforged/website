@@ -6,29 +6,28 @@
   --gold:#d4af37;
 
   /* Semantic palette (light mode defaults) */
-  --bg: #ffffff;            /* page background */
-  --text: #0b0b0b;          /* primary text (high contrast) */
-  --card: #ffffff;          /* card backgrounds */
-  --header-text: #ffffff;   /* header link/text color */
-  --muted: #4b4b4b;         /* secondary text (muted but legible) */
-  --muted-weak: #6b6b6b;    /* slightly lighter muted */
-  --brand-muted: #333333;   /* DBA / brand-muted in light mode */
+  --bg: #ffffff;
+  --text: #0b0b0b;
+  --card: #ffffff;
+  --header-text: #ffffff;
+  --muted: #4b4b4b;
+  --muted-weak: #6b6b6b;
+  --brand-muted: #333333;
   --border: rgba(0,0,0,0.08);
   --glass: rgba(0,0,0,0.06);
 
-  /* accessibility helpers */
   --focus-ring: rgba(58,12,163,0.18);
 }
 
 /* Dark mode variables */
 .dark {
-  --bg: #07070a;            /* very dark background */
-  --text: #f5f5f7;          /* light, high-contrast text */
-  --card: #0b0b10;          /* dark card */
+  --bg: #07070a;
+  --text: #f5f5f7;
+  --card: #0b0b10;
   --header-text: #ffffff;
   --muted: #cfcfd6;
   --muted-weak: #a8a8af;
-  --brand-muted: #dcd6ff;   /* DBA / brand-muted in dark mode */
+  --brand-muted: #dcd6ff;
   --border: rgba(255,255,255,0.06);
   --glass: rgba(255,255,255,0.04);
   --focus-ring: rgba(181,139,255,0.18);
@@ -49,8 +48,6 @@ body{
   -moz-osx-font-smoothing:grayscale;
 }
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-/* Ensure main expands so footer stays at bottom */
 main { flex: 1 0 auto; }
 
 /* header */
@@ -64,7 +61,7 @@ header.site-header{
   box-shadow:0 6px 20px rgba(10,8,20,0.18);
 }
 .site-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:14px; margin-left:8px;} /* added extra left spacing to match hamburger */
+.brand{display:flex;align-items:center;gap:14px; margin-left:8px;}
 .logo{
   width:48px;height:48px;
   background:linear-gradient(135deg,var(--accent),var(--gold));
@@ -72,7 +69,7 @@ header.site-header{
   box-shadow:0 4px 14px rgba(58,12,163,0.12);
 }
 .brand h1{margin:0;font-size:1.05rem;letter-spacing:0.6px;color:var(--header-text)}
-.brand .muted { color: var(--brand-muted); } /* stronger DBA contrast in light mode and mapped in dark mode */
+.brand .muted { color: var(--brand-muted); }
 
 nav.primary{display:flex;gap:10px;align-items:center}
 nav.primary a{
@@ -88,21 +85,34 @@ nav.primary a:focus{
   box-shadow:0 6px 18px rgba(58,12,163,0.06);
 }
 
-/* Hamburger - larger touch area and moved in from the edge */
+/* Hamburger */
 .hamburger{
   display:none;
   flex-direction:column;
   gap:6px;
   cursor:pointer;
-  padding:10px;                 /* bigger hit target */
-  margin-right:8px;             /* move away from the edge */
+  padding:10px;
+  margin-right:8px;
   border-radius:8px;
   touch-action:manipulation;
   z-index:90;
-  background:transparent;
+  background:linear-gradient(135deg,var(--accent),var(--gold)); /* NEW background */
 }
 .hamburger:active{transform:translateY(1px)}
 .hamburger div{width:28px;height:3px;background:var(--header-text);border-radius:2px;}
+
+/* Mobile nav dropdown */
+#mobileNav{
+  position:absolute;   /* changed from fixed */
+  right:8px;           /* align to hamburger */
+  top:72px;            /* directly below header */
+  z-index:70;
+  display:none;
+  transition:all .25s;
+  border-radius:8px;
+  overflow:hidden;
+}
+#mobileNav.open{display:block}
 
 /* HERO */
 .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;padding:60px 0}
@@ -139,47 +149,41 @@ nav.primary a:focus{
 .founder{display:flex;gap:20px;align-items:flex-start}
 .photo{
   width:220px;height:220px;border-radius:12px;
-  background:linear-gradient(180deg,#eee,#ddd);
   border:6px solid rgba(58,12,163,0.09);
   box-shadow:0 12px 40px rgba(58,12,163,0.12);
-  background-size:contain !important;background-repeat:no-repeat;background-position:center;
+  background-size:cover !important;   /* ensure cover */
+  background-repeat:no-repeat;
+  background-position:center;
 }
 .bio{flex:1}
 
 /* gallery */
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-
-/* Card wrapper for images: uniform heights, centered content, no extra whitespace.
-   Use object-fit:cover on images so they fill the box (no white bars) while keeping uniform heights. */
 .card-photo{
   border-radius:8px;
   border:1px solid var(--border);
   overflow:hidden;
   background:transparent;
-
-  height:220px;            /* uniform height for all cards */
+  height:220px;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-
-/* responsive images inside the card */
-/* Use cover so images fill the area without white space; images are centered and uniformly cropped. */
 img.responsive {
   width:100%;
-  height:100%;
-  object-fit:cover; /* fills and avoids whitespace; crops as needed */
+  height:auto;          /* corrected scaling */
+  object-fit:cover;
   display:block;
   background:transparent;
   align-self:center;
   justify-self:center;
-  max-width:none;
+  max-width:100%;
 }
 
 /* Home hero embedded image */
 .home-hero-image{
   width:100%;
-  height:260px;
+  height:auto;          /* corrected scaling */
   border-radius:12px;
   object-fit:cover;
   display:block;
@@ -191,7 +195,7 @@ img.responsive {
 .contact-row{display:flex;gap:18px}
 .contact-card{flex:1;padding:16px;border-radius:10px;background:linear-gradient(180deg,var(--card),#fbf8ff);border:1px solid var(--border)}
 
-/* footer - ensure always visible at very bottom */
+/* footer */
 footer.site-footer{
   margin-top:24px;padding:18px 0;
   background:linear-gradient(90deg,#050014,#0b0616);
@@ -205,35 +209,4 @@ footer.site-footer .container div{color:#dcd6ff}
   .hero{grid-template-columns:1fr; padding:40px 0}
   .hamburger{display:flex}
   nav.primary{display:none}
-  .founder{flex-direction:column}
-  .gallery{grid-template-columns:repeat(2,1fr)}
-  .grid-3{grid-template-columns:1fr}
-}
-
-/* reveal animations */
-.reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.9,.2,1)}
-.reveal.visible{opacity:1;transform:none}
-.float{animation:float 6s ease-in-out infinite}
-@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
-
-/* small helpers */
-.muted{color:var(--muted);font-size:0.95rem}
-.muted-weak{color:var(--muted-weak)}
-.section-title h2{font-size:1.25rem}
-
-/* Focus styles for keyboard users */
-a:focus, button:focus, .hamburger:focus {
-  outline: 3px solid rgba(90,50,180,0.12);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 4px var(--focus-ring);
-}
-
-/* Mapping to ensure earlier hard-coded elements respect variables */
-.brand h1, .logo, nav.primary a { color: var(--header-text) !important; }
-.card, .contact-card { background: var(--card) !important; color: var(--text) !important; }
-body, p, li, h1, h2, h3, h4, a { color: var(--text) !important; }
-
-/* Additional image helpers (if you ever use img inside .photo) */
-.photo img { width:100%; height:100%; object-fit:cover; display:block; }
-
-/* End of file */
+  .founder{flex-direction
