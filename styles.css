@@ -12,6 +12,7 @@
   --header-text: #ffffff;   /* header link/text color */
   --muted: #4b4b4b;         /* secondary text (muted but legible) */
   --muted-weak: #6b6b6b;    /* slightly lighter muted */
+  --brand-muted: #333333;   /* DBA / brand-muted in light mode */
   --border: rgba(0,0,0,0.08);
   --glass: rgba(0,0,0,0.06);
 
@@ -27,6 +28,7 @@
   --header-text: #ffffff;
   --muted: #cfcfd6;
   --muted-weak: #a8a8af;
+  --brand-muted: #dcd6ff;   /* DBA / brand-muted in dark mode */
   --border: rgba(255,255,255,0.06);
   --glass: rgba(255,255,255,0.04);
   --focus-ring: rgba(181,139,255,0.18);
@@ -48,7 +50,7 @@ body{
 }
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-/* Ensure main expands so footer is pushed to the bottom on short pages */
+/* Ensure main expands so footer stays at bottom */
 main { flex: 1 0 auto; }
 
 /* header */
@@ -70,6 +72,8 @@ header.site-header{
   box-shadow:0 4px 14px rgba(58,12,163,0.12);
 }
 .brand h1{margin:0;font-size:1.05rem;letter-spacing:0.6px;color:var(--header-text)}
+.brand .muted { color: var(--brand-muted); } /* stronger DBA contrast in light mode and mapped in dark mode */
+
 nav.primary{display:flex;gap:10px;align-items:center}
 nav.primary a{
   color:var(--header-text);
@@ -83,6 +87,8 @@ nav.primary a:focus{
   color:var(--accent);
   box-shadow:0 6px 18px rgba(58,12,163,0.06);
 }
+
+/* Hamburger - larger touch area and moved in from the edge */
 .hamburger{
   display:none;
   flex-direction:column;
@@ -143,31 +149,42 @@ nav.primary a:focus{
 /* gallery */
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 
-/* Card wrapper for images (gives space and shape to the image) */
+/* Card wrapper for images: uniform heights, centered content, no extra whitespace.
+   Use object-fit:cover on images so they fill the box (no white bars) while keeping uniform heights. */
 .card-photo{
   border-radius:8px;
   border:1px solid var(--border);
   overflow:hidden;
   background:transparent;
 
-  aspect-ratio:16/9;
-  min-height:120px;
+  height:220px;            /* uniform height for all cards */
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
 /* responsive images inside the card */
-/* Show full image (no cropping). Center it, and don't add a dark fill. */
+/* Use cover so images fill the area without white space; images are centered and uniformly cropped. */
 img.responsive {
   width:100%;
   height:100%;
-  object-fit:contain; /* show the entire image */
+  object-fit:cover; /* fills and avoids whitespace; crops as needed */
   display:block;
   background:transparent;
   align-self:center;
   justify-self:center;
-  /* add a subtle background only if image fails to load, otherwise transparent */
+  max-width:none;
+}
+
+/* Home hero embedded image */
+.home-hero-image{
+  width:100%;
+  height:260px;
+  border-radius:12px;
+  object-fit:cover;
+  display:block;
+  margin-top:16px;
+  box-shadow:0 10px 30px rgba(10,10,20,0.06);
 }
 
 /* contact */
@@ -178,10 +195,9 @@ img.responsive {
 footer.site-footer{
   margin-top:24px;padding:18px 0;
   background:linear-gradient(90deg,#050014,#0b0616);
-  color:var(--footer-text, #bdb7ff);
+  color:var(--footer-text, #dcd6ff);
   flex-shrink:0;
 }
-/* ensure footer text uses accessible contrast */
 footer.site-footer .container div{color:#dcd6ff}
 
 /* responsive */
@@ -194,11 +210,6 @@ footer.site-footer .container div{color:#dcd6ff}
   .grid-3{grid-template-columns:1fr}
 }
 
-/* small typography / accessibility adjustments */
-.muted{color:var(--muted);font-size:0.95rem}
-.muted-weak{color:var(--muted-weak)}
-.section-title h2{font-size:1.25rem}
-
 /* reveal animations */
 .reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.9,.2,1)}
 .reveal.visible{opacity:1;transform:none}
@@ -206,12 +217,9 @@ footer.site-footer .container div{color:#dcd6ff}
 @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
 
 /* small helpers */
-hr.hr{height:1px;background:linear-gradient(90deg,transparent,var(--muted),transparent);margin:18px 0;border-radius:2px}
-
-/* Dark Mode explicit mapping for elements that used hard-coded colors earlier */
-.brand h1, .logo, nav.primary a { color: var(--header-text) !important; }
-.card, .contact-card { background: var(--card) !important; color: var(--text) !important; }
-body, p, li, h1, h2, h3, h4, a { color: var(--text) !important; }
+.muted{color:var(--muted);font-size:0.95rem}
+.muted-weak{color:var(--muted-weak)}
+.section-title h2{font-size:1.25rem}
 
 /* Focus styles for keyboard users */
 a:focus, button:focus, .hamburger:focus {
@@ -219,6 +227,11 @@ a:focus, button:focus, .hamburger:focus {
   outline-offset: 3px;
   box-shadow: 0 0 0 4px var(--focus-ring);
 }
+
+/* Mapping to ensure earlier hard-coded elements respect variables */
+.brand h1, .logo, nav.primary a { color: var(--header-text) !important; }
+.card, .contact-card { background: var(--card) !important; color: var(--text) !important; }
+body, p, li, h1, h2, h3, h4, a { color: var(--text) !important; }
 
 /* Additional image helpers (if you ever use img inside .photo) */
 .photo img { width:100%; height:100%; object-fit:cover; display:block; }
