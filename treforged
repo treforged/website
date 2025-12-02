@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tre Forged — Wealth & Cars</title>
+  <meta name="description" content="Tre Forged — Wealth and Cars. Luxury automotive and wealth services." />
+  <style>
+    :root{
+      --purple-1:#0f0436; /* deep */
+      --purple-2:#3a0ca3; /* rich */
+      --accent:#b58bff; /* light purple */
+      --gold:#d4af37;
+      --black:#0b0b0b;
+      --white:#ffffff;
+      --muted:#eae6f8;
+      --glass: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--black);background:linear-gradient(180deg,var(--white),#fbf8ff)}
+
+    /* NAV */
+    header.site-header{
+      position:sticky;top:0;z-index:60;background:linear-gradient(135deg,var(--purple-2),var(--black));color:var(--white);backdrop-filter: blur(6px);
+      box-shadow:0 6px 20px rgba(10,8,20,0.45);
+    }
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    .site-top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;background:linear-gradient(135deg,var(--accent),var(--gold));border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#111}
+    .brand h1{margin:0;font-size:1.25rem;letter-spacing:0.6px}
+    nav.primary a{color:var(--white);text-decoration:none;margin:0 12px;font-weight:600;padding:6px 8px;border-radius:6px;transition:all .25s}
+    nav.primary a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px);color:var(--accent)}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 460px;gap:40px;align-items:center;padding:80px 0}
+    .hero-left{padding-right:10px}
+    .kicker{display:inline-block;padding:6px 10px;background:var(--glass);border:1px solid rgba(255,255,255,0.06);color:var(--muted);border-radius:8px;font-weight:600}
+    .hero-title{font-size:42px;color:var(--purple-1);margin:18px 0 10px}
+    .hero-sub{color:#333;margin-bottom:20px}
+    .cta-row{display:flex;gap:12px}
+    .btn{padding:12px 20px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--purple-2),var(--accent));color:#fff;box-shadow:0 10px 30px rgba(74,0,150,0.18)}
+    .btn-ghost{background:transparent;border:2px solid var(--purple-2);color:var(--purple-2)}
+
+    /* hero-right card */
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));padding:18px;border-radius:14px;border:1px solid rgba(90,46,166,0.12);box-shadow:0 8px 30px rgba(10,10,20,0.12)}
+    .hero-card h3{margin:8px 0 4px;color:var(--accent)}
+    .hero-card p{margin:0;color:#444}
+
+    /* sections */
+    section.card{margin:40px auto;padding:36px;background:linear-gradient(180deg,#fff,#faf6ff);border-radius:12px;box-shadow:0 10px 30px rgba(10,10,20,0.06);border-left:6px solid var(--purple-2)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .feature{background:rgba(58,12,163,0.03);padding:20px;border-radius:10px}
+    .feature h4{margin:8px 0;color:var(--purple-2)}
+
+    /* founder section */
+    .founder{display:flex;gap:28px;align-items:flex-start}
+    .founder .photo{width:260px;height:260px;border-radius:12px;background:linear-gradient(180deg,#eee,#ddd);border:6px solid rgba(58,12,163,0.09);box-shadow:0 12px 40px rgba(58,12,163,0.12);background-size:cover;background-position:center}
+    .founder .bio{flex:1}
+    .founder .bio h3{margin-top:0;color:var(--purple-2)}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card-photo{height:160px;border-radius:10px;background:#111;background-size:cover;background-position:center;border:1px solid rgba(0,0,0,0.08);overflow:hidden;transform:translateZ(0)}
+
+    /* contact */
+    .contact-row{display:flex;gap:24px}
+    .contact-card{flex:1;padding:20px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbf8ff);border:1px solid rgba(58,12,163,0.06)}
+    .social-list a{display:inline-block;padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--purple-2));color:#fff;text-decoration:none;font-weight:700}
+
+    footer.site-footer{margin-top:40px;padding:28px 0;background:linear-gradient(90deg,#050014,#0b0616);color:#bdb7ff}
+
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;}.hero-right{order:2}.founder{flex-direction:column}.gallery{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:1fr}}
+
+    /* animations */
+    .reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.9,.2,1)}
+    .reveal.visible{opacity:1;transform:none}
+    .float{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+    /* subtle parallax background for hero */
+    .hero-bg{position:absolute;right:0;top:0;width:650px;height:420px;background:radial-gradient(circle at 20% 20%, rgba(181,139,255,0.14), transparent 26%), radial-gradient(circle at 80% 80%, rgba(212,175,55,0.06), transparent 22%);border-radius:18px;filter:blur(40px);z-index:1;pointer-events:none}
+
+    /* small helpers */
+    .muted{color:#666;font-size:0.95rem}
+    .section-title{display:flex;align-items:center;gap:12px}
+    .section-title h2{margin:0;color:var(--purple-2)}
+    .hr{height:1px;background:linear-gradient(90deg,transparent,var(--muted),transparent);margin:18px 0;border-radius:2px}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-top">
+      <div class="brand">
+        <div class="logo">TF</div>
+        <div>
+          <h1>Tre Forged</h1>
+          <div class="muted">DBA: Tre Forged Wealth and Cars</div>
+        </div>
+      </div>
+      <nav class="primary" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#founder">Founder</a>
+        <a href="#cars">Cars</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero" aria-label="Hero">
+      <div class="hero-left">
+        <div class="kicker reveal">Wealth • Cars • Strategy</div>
+        <h2 class="hero-title reveal">Luxury automotive and wealth services crafted to outperform.</h2>
+        <p class="hero-sub reveal">Tre Forged blends automotive passion with financial expertise to deliver premium services for clients seeking excellence in both wealth and collectible vehicles.</p>
+        <div class="cta-row reveal">
+          <button class="btn btn-primary">Get Started</button>
+          <button class="btn btn-ghost">Our Services</button>
+        </div>
+        <div class="hr"></div>
+        <div class="muted reveal">Trusted by enthusiasts and investors. Follow our insights for curated opportunities.</div>
+      </div>
+
+      <div style="position:relative;">
+        <div class="hero-bg float" aria-hidden="true"></div>
+        <div class="hero-card reveal" style="position:relative;z-index:2">
+          <h3>Exclusive Advisory</h3>
+          <p>Tailored strategies for portfolio growth and collectible vehicle acquisition — centered on margin optimization and long-term value.</p>
+          <p style="margin-top:12px;font-weight:700;color:var(--purple-2)">Concierge onboarding · Market analysis · Vehicle sourcing</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="card reveal">
+      <div class="section-title">
+        <h2>Services</h2>
+      </div>
+      <p class="muted">Comprehensive offerings aligned to wealth creation and automotive excellence.</p>
+      <div class="grid-3" style="margin-top:20px">
+        <div class="feature">
+          <h4>Wealth Strategy</h4>
+          <p class="muted">Portfolio analysis, tax-aware strategies, and data-driven investment planning.</p>
+        </div>
+        <div class="feature">
+          <h4>Vehicle Acquisition</h4>
+          <p class="muted">Sourcing rare vehicles, auction representation, and authenticity verification.</p>
+        </div>
+        <div class="feature">
+          <h4>Market Research</h4>
+          <p class="muted">Proprietary research identifying patterns and margin opportunities.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="founder" class="card reveal">
+      <div class="section-title"><h2>About the Founder</h2></div>
+      <div class="founder" style="margin-top:20px">
+        <div class="photo" style="background-image:url('founder.jpg');" aria-hidden="true"></div>
+        <div class="bio">
+          <h3>TreVon Hines</h3>
+          <p class="muted">TreVon Hines is a motivated and academically accomplished graduate of the University of South Florida, holding a major in finance and a minor in management, with a 3.87 GPA. He specializes as an analyst with strategic and critical thinking, innovative ideas, and exceptional Excel expertise.</p>
+
+          <p class="muted">He currently serves as Procurement Representative Associate at Lockheed Martin, following his role as College Intern at Circle K in Tampa, Florida, where he aided finance, fuel, and marketing departments by tracking pump down times, speeding weekly finance reports, creating distribution reports for sales predictions to prevent out-of-stocks, and pulling sales data for profitability actions.</p>
+
+          <p class="muted">Previously, he worked as Store Associate at CVS Health in Tampa, College Financial Representative at Northwestern Mutual in Greater Tampa Bay Area, and Unit Leader at The Salvation Army in Bloomingdale, New Jersey. These roles honed skills in analyzing information, attention to detail, unloading, mathematics, financial policies, and youth mentoring. He recognizes trends and patterns in market data to maximize margin and win customers. Involved in The National Society of Leadership and Success, Beta Gamma Sigma, and NABA, enhancing leadership and teamwork.</p>
+
+          <p style="font-weight:700;color:var(--purple-2)">TreVon aims to become CEO of a company and make a positive global impact.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cars" class="card reveal">
+      <div class="section-title"><h2>Featured Cars</h2></div>
+      <p class="muted">A selection of curated vehicles representing our acquisition focus.</p>
+      <div class="gallery" style="margin-top:18px">
+        <div class="card-photo" style="background-image:url('car1.jpg')"></div>
+        <div class="card-photo" style="background-image:url('car2.jpg')"></div>
+        <div class="card-photo" style="background-image:url('car3.jpg')"></div>
+        <div class="card-photo" style="background-image:url('car4.jpg')"></div>
+        <div class="card-photo" style="background-image:url('car5.jpg')"></div>
+        <div class="card-photo" style="background-image:url('car6.jpg')"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="card reveal">
+      <div class="section-title"><h2>Contact & Follow</h2></div>
+      <div class="contact-row" style="margin-top:18px">
+        <div class="contact-card">
+          <h4>Get in touch</h4>
+          <p class="muted">For advisory, acquisition, or partnership inquiries, email us and our team will respond promptly.</p>
+          <p style="margin-top:12px;font-weight:700">Email: <a href="mailto:info@yourllc.com">info@yourllc.com</a></p>
+        </div>
+
+        <div class="contact-card">
+          <h4>Follow Us</h4>
+          <p class="muted">Stay up to date with market insights and featured vehicles.</p>
+          <div style="margin-top:12px" class="social-list">
+            <a href="https://www.instagram.com/stockchall/" target="_blank">@stockchall</a>
+          </div>
+          <div style="margin-top:18px;color:#666">Prefer a direct message? DM us on Instagram or send an email.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© 2026 Tre Forged. All rights reserved.</div>
+        <div style="opacity:0.9">Designed for collectors, investors, and enthusiasts.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); }
+      })
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+      });
+    },{threshold:0.12});
+
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Tiny parallax effect on hero background (mouse move)
+    const hero = document.querySelector('.hero');
+    const bg = document.querySelector('.hero-bg');
+    if(hero && bg){
+      hero.addEventListener('mousemove',e=>{
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        bg.style.transform = `translate(${x*30}px,${y*20}px)`;
+      });
+    }
+  </script>
+</body>
+</html>
