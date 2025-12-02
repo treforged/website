@@ -1,38 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<title>Cars</title>
-<link rel="stylesheet" href="styles.css" />
-<script defer src="main.js"></script>
-</head>
-<body>
-<header>
-  <nav>
-    <div class="logo">Tre Forged</div>
-    <div id="burger" class="burger">&#9776;</div>
-    <ul class="nav-links" id="mobileNav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="cars.html">Cars</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="founder.html">Founder</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cars — Tre Forged</title>
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header class="site-header">
+  <div class="container site-top">
+    <div class="brand">
+      <div class="logo">TF</div>
+      <div>
+        <h1>Tre Forged</h1>
+        <div class="muted">DBA: Tre Forged Wealth and Cars</div>
+      </div>
+    </div>
+    <nav class="primary" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="founder.html">Founder</a>
+      <a href="cars.html">Cars</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div id="burger" class="hamburger" aria-label="Open menu">
+      <div></div><div></div><div></div>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav id="mobileNav" style="display:none;">
+    <div class="container" style="background:linear-gradient(135deg,var(--purple-2),var(--black));padding:12px;border-top:1px solid rgba(255,255,255,0.04)">
+      <a href="index.html" style="display:block;padding:10px;color:white;text-decoration:none">Home</a>
+      <a href="services.html" style="display:block;padding:10px;color:white;text-decoration:none">Services</a>
+      <a href="founder.html" style="display:block;padding:10px;color:white;text-decoration:none">Founder</a>
+      <a href="cars.html" style="display:block;padding:10px;color:white;text-decoration:none">Cars</a>
+      <a href="contact.html" style="display:block;padding:10px;color:white;text-decoration:none">Contact</a>
+    </div>
   </nav>
+
+  <style>
+    /* mobile nav styles (inline to ensure visibility) */
+    #mobileNav{position:fixed;left:0;right:0;top:72px;z-index:70;display:none;transition:all .25s}
+    #mobileNav.open{display:block}
+  </style>
 </header>
 
-<main>
-<h1 style="text-align:center;margin:20px;">Cars</h1>
-<div class="gallery reveal">
-  <img src="assets/car1.jpg" class="card-photo"/>
-  <img src="assets/car2.jpg" class="card-photo"/>
-  <img src="assets/car3.jpg" class="card-photo"/>
-  <img src="assets/car4.jpg" class="card-photo"/>
-  <img src="assets/car5.jpg" class="card-photo"/>
-  <img src="assets/car6.jpg" class="card-photo"/>
-</div>
+<main class="container">
+  <section class="card reveal">
+    <div class="section-title"><h2>Featured Cars</h2></div>
+    <p class="muted">Curated showcases and acquisition stories.</p>
+    <div class="gallery" style="margin-top:12px">
+      <div class="card-photo reveal" style="background-image:url('assets/car1.jpg')"></div>
+      <div class="card-photo reveal" style="background-image:url('assets/car2.jpg')"></div>
+      <div class="card-photo reveal" style="background-image:url('assets/car3.jpg')"></div>
+      <div class="card-photo reveal" style="background-image:url('assets/car4.jpg')"></div>
+      <div class="card-photo reveal" style="background-image:url('assets/car5.jpg')"></div>
+      <div class="card-photo reveal" style="background-image:url('assets/car6.jpg')"></div>
+    </div>
+  </section>
 </main>
+<footer class="site-footer">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <div>© 2026 Tre Forged. All rights reserved.</div>
+    <div style="opacity:0.9">Designed for collectors, investors, and enthusiasts.</div>
+  </div>
+</footer>
 
-<footer>© 2026 Tre Forged. All rights reserved. Designed for collectors, investors, and enthusiasts.</footer>
-</body>
-</html>
+<script src="main.js"></script>
+</body></html>
