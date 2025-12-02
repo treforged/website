@@ -68,12 +68,17 @@
       const openClass = 'open';
       const toggleNav = (evt) => {
         if (evt && typeof evt.preventDefault === 'function') evt.preventDefault();
-        const willOpen = !mobileNav.classList.contains(openClass);
-        if (willOpen) {
+        const isOpen = mobileNav.classList.contains(openClass);
+        if (!isOpen) {
+          // Open
           mobileNav.classList.add(openClass);
+          // override inline/display to ensure visibility on iOS where inline style may have been display:none
+          mobileNav.style.display = 'block';
           burger.setAttribute('aria-expanded','true');
         } else {
+          // Close
           mobileNav.classList.remove(openClass);
+          mobileNav.style.display = 'none';
           burger.setAttribute('aria-expanded','false');
         }
       };
@@ -83,6 +88,7 @@
 
       // Touch handler (iOS) — prevent double events in some browsers
       burger.addEventListener('touchstart', function(e){
+        // prevent default so some browsers don't delay/convert into a click later
         e.preventDefault();
         toggleNav(e);
       }, { passive: false });
@@ -99,6 +105,7 @@
       mobileNav.querySelectorAll('a').forEach(a=>{
         a.addEventListener('click', ()=> {
           mobileNav.classList.remove(openClass);
+          mobileNav.style.display = 'none';
           burger.setAttribute('aria-expanded','false');
         });
       });
@@ -108,6 +115,7 @@
         if (!mobileNav.classList.contains(openClass)) return;
         if (!mobileNav.contains(e.target) && !burger.contains(e.target)) {
           mobileNav.classList.remove(openClass);
+          mobileNav.style.display = 'none';
           burger.setAttribute('aria-expanded','false');
         }
       }, { passive: true });
@@ -115,14 +123,16 @@
         if (!mobileNav.classList.contains(openClass)) return;
         if (!mobileNav.contains(e.target) && !burger.contains(e.target)) {
           mobileNav.classList.remove(openClass);
+          mobileNav.style.display = 'none';
           burger.setAttribute('aria-expanded','false');
         }
       });
 
       // Close when resizing to desktop widths
       window.addEventListener('resize', () => {
-        if (window.innerWidth > 900 && mobileNav.classList.contains('open')) {
-          mobileNav.classList.remove('open');
+        if (window.innerWidth > 900 && mobileNav.classList.contains(openClass)) {
+          mobileNav.classList.remove(openClass);
+          mobileNav.style.display = 'none';
           burger.setAttribute('aria-expanded','false');
         }
       });
@@ -135,7 +145,5 @@
       });
     }, {threshold: 0.12});
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-    // --- Optional: ensure images that are used in hero area load nicely (no extra actions needed) ---
   });
 })();
