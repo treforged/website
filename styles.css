@@ -1,12 +1,35 @@
 :root{
+  /* Brand colors */
   --purple-1:#0f0436;
   --purple-2:#3a0ca3;
   --accent:#b58bff;
   --gold:#d4af37;
-  --black:#0b0b0b;
-  --white:#ffffff;
-  --muted:#eae6f8;
-  --glass: rgba(255,255,255,0.06);
+
+  /* Semantic palette (light mode defaults) */
+  --bg: #ffffff;            /* page background */
+  --text: #0b0b0b;          /* primary text (high contrast) */
+  --card: #ffffff;          /* card backgrounds */
+  --header-text: #ffffff;   /* header link/text color */
+  --muted: #4b4b4b;         /* secondary text (muted but legible) */
+  --muted-weak: #6b6b6b;    /* slightly lighter muted */
+  --border: rgba(0,0,0,0.08);
+  --glass: rgba(0,0,0,0.06);
+
+  /* accessibility helpers */
+  --focus-ring: rgba(58,12,163,0.18);
+}
+
+/* Dark mode variables */
+.dark {
+  --bg: #07070a;            /* very dark background */
+  --text: #f5f5f7;          /* light, high-contrast text */
+  --card: #0b0b10;          /* dark card */
+  --header-text: #ffffff;
+  --muted: #cfcfd6;
+  --muted-weak: #a8a8af;
+  --border: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.04);
+  --focus-ring: rgba(181,139,255,0.18);
 }
 
 /* Reset / base */
@@ -18,12 +41,14 @@ body{
   flex-direction:column;
   margin:0;
   font-family:Inter,Arial,Helvetica,sans-serif;
-  color:var(--black);
-  background:linear-gradient(180deg,var(--white),#fbf8ff);
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-/* Make main expand so footer stays at bottom */
+/* Ensure main expands so footer is pushed to the bottom on short pages */
 main { flex: 1 0 auto; }
 
 /* header */
@@ -31,20 +56,33 @@ header.site-header{
   position:sticky;
   top:0;
   z-index:60;
-  background:linear-gradient(135deg,var(--purple-2),var(--black));
-  color:var(--white);
+  background:linear-gradient(135deg,var(--purple-2),#0b0420 60%);
+  color:var(--header-text);
   backdrop-filter: blur(6px);
   box-shadow:0 6px 20px rgba(10,8,20,0.18);
 }
 .site-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
 .brand{display:flex;align-items:center;gap:14px}
-.logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),var(--gold));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#111}
-.brand h1{margin:0;font-size:1.05rem;letter-spacing:0.6px}
+.logo{
+  width:48px;height:48px;
+  background:linear-gradient(135deg,var(--accent),var(--gold));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#111;
+  box-shadow:0 4px 14px rgba(58,12,163,0.12);
+}
+.brand h1{margin:0;font-size:1.05rem;letter-spacing:0.6px;color:var(--header-text)}
 nav.primary{display:flex;gap:10px;align-items:center}
-nav.primary a{color:var(--white);text-decoration:none;margin:0 8px;font-weight:600;padding:6px 8px;border-radius:6px;transition:all .25s}
-nav.primary a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px);color:var(--accent)}
-
-/* Hamburger - larger touch area and moved in from the edge */
+nav.primary a{
+  color:var(--header-text);
+  text-decoration:none;margin:0 8px;font-weight:700;padding:6px 8px;border-radius:6px;transition:all .18s;
+  outline-offset:3px;
+}
+nav.primary a:hover,
+nav.primary a:focus{
+  background:rgba(255,255,255,0.06);
+  transform:translateY(-2px);
+  color:var(--accent);
+  box-shadow:0 6px 18px rgba(58,12,163,0.06);
+}
 .hamburger{
   display:none;
   flex-direction:column;
@@ -53,25 +91,40 @@ nav.primary a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)
   padding:10px;                 /* bigger hit target */
   margin-right:8px;             /* move away from the edge */
   border-radius:8px;
-  touch-action:manipulation;    /* improve mobile touch behavior */
-  z-index:90;                   /* ensure it's above mobile nav */
+  touch-action:manipulation;
+  z-index:90;
   background:transparent;
 }
 .hamburger:active{transform:translateY(1px)}
-.hamburger div{width:28px;height:3px;background:white;border-radius:2px;}
+.hamburger div{width:28px;height:3px;background:var(--header-text);border-radius:2px;}
 
 /* HERO */
 .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;padding:60px 0}
-.kicker{display:inline-block;padding:6px 10px;background:var(--glass);border:1px solid rgba(255,255,255,0.06);color:var(--muted);border-radius:8px;font-weight:600}
+.kicker{display:inline-block;padding:6px 10px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:var(--muted);border-radius:8px;font-weight:600}
 .hero-title{font-size:34px;color:var(--purple-1);margin:14px 0 8px}
-.hero-sub{color:#333;margin-bottom:16px}
+.hero-sub{color:var(--muted-weak);margin-bottom:16px}
 .cta-row{display:flex;gap:12px}
 .btn{padding:10px 18px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
-.btn-primary{background:linear-gradient(90deg,var(--purple-2),var(--accent));color:#fff;box-shadow:0 10px 30px rgba(74,0,150,0.18)}
-.btn-ghost{background:transparent;border:2px solid var(--purple-2);color:var(--purple-2)}
+.btn-primary{
+  background:linear-gradient(90deg,var(--purple-2),var(--accent));
+  color:#fff;
+  box-shadow:0 10px 30px rgba(58,12,163,0.18);
+  border:1px solid rgba(0,0,0,0.06);
+}
+.btn-primary:focus{box-shadow:0 0 0 4px var(--focus-ring)}
+.btn-ghost{
+  background:transparent;border:2px solid var(--purple-2);color:var(--purple-2);
+}
+.btn-ghost:focus{box-shadow:0 0 0 4px rgba(58,12,163,0.08)}
 
 /* card and sections */
-.card{margin:32px auto;padding:28px;background:linear-gradient(180deg,#fff,#faf6ff);border-radius:12px;box-shadow:0 10px 30px rgba(10,10,20,0.06);border-left:6px solid var(--purple-2)}
+.card{
+  margin:32px auto;padding:28px;
+  background:var(--card);
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(10,10,20,0.06);
+  border-left:6px solid var(--purple-2);
+}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .feature{background:rgba(58,12,163,0.03);padding:16px;border-radius:10px}
 .section-title h2{margin:0;color:var(--purple-2)}
@@ -79,15 +132,11 @@ nav.primary a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)
 /* founder */
 .founder{display:flex;gap:20px;align-items:flex-start}
 .photo{
-  width:220px;
-  height:220px;
-  border-radius:12px;
+  width:220px;height:220px;border-radius:12px;
   background:linear-gradient(180deg,#eee,#ddd);
   border:6px solid rgba(58,12,163,0.09);
   box-shadow:0 12px 40px rgba(58,12,163,0.12);
-  background-size:contain !important;
-  background-repeat:no-repeat;
-  background-position:center;
+  background-size:contain !important;background-repeat:no-repeat;background-position:center;
 }
 .bio{flex:1}
 
@@ -95,15 +144,14 @@ nav.primary a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 
 /* Card wrapper for images (gives space and shape to the image) */
-/* Use flexbox so contained images are centered and leftover space is neutral */
 .card-photo{
   border-radius:8px;
-  border:1px solid rgba(0,0,0,0.08);
+  border:1px solid var(--border);
   overflow:hidden;
   background:transparent;
 
   aspect-ratio:16/9;
-  min-height:120px; /* likely enough for thumbs */
+  min-height:120px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -119,14 +167,22 @@ img.responsive {
   background:transparent;
   align-self:center;
   justify-self:center;
+  /* add a subtle background only if image fails to load, otherwise transparent */
 }
 
 /* contact */
 .contact-row{display:flex;gap:18px}
-.contact-card{flex:1;padding:16px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbf8ff);border:1px solid rgba(58,12,163,0.06)}
+.contact-card{flex:1;padding:16px;border-radius:10px;background:linear-gradient(180deg,var(--card),#fbf8ff);border:1px solid var(--border)}
 
-/* footer */
-footer.site-footer{margin-top:24px;padding:18px 0;background:linear-gradient(90deg,#050014,#0b0616);color:#bdb7ff;flex-shrink:0}
+/* footer - ensure always visible at very bottom */
+footer.site-footer{
+  margin-top:24px;padding:18px 0;
+  background:linear-gradient(90deg,#050014,#0b0616);
+  color:var(--footer-text, #bdb7ff);
+  flex-shrink:0;
+}
+/* ensure footer text uses accessible contrast */
+footer.site-footer .container div{color:#dcd6ff}
 
 /* responsive */
 @media (max-width:900px){
@@ -138,6 +194,11 @@ footer.site-footer{margin-top:24px;padding:18px 0;background:linear-gradient(90d
   .grid-3{grid-template-columns:1fr}
 }
 
+/* small typography / accessibility adjustments */
+.muted{color:var(--muted);font-size:0.95rem}
+.muted-weak{color:var(--muted-weak)}
+.section-title h2{font-size:1.25rem}
+
 /* reveal animations */
 .reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.9,.2,1)}
 .reveal.visible{opacity:1;transform:none}
@@ -145,26 +206,18 @@ footer.site-footer{margin-top:24px;padding:18px 0;background:linear-gradient(90d
 @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
 
 /* small helpers */
-.muted{color:#666;font-size:0.95rem}
 hr.hr{height:1px;background:linear-gradient(90deg,transparent,var(--muted),transparent);margin:18px 0;border-radius:2px}
 
-/* Dark Mode Toggle */
-:root {
-  --bg: #ffffff;
-  --text: #111111;
-  --card: #ffffff;
-}
-.dark {
-  --bg: #0a0a0a;
-  --text: #f0f0f0;
-  --card: #111111;
-}
-body {
-  background: var(--bg);
-  color: var(--text);
-}
-.card {
-  background: var(--card);
+/* Dark Mode explicit mapping for elements that used hard-coded colors earlier */
+.brand h1, .logo, nav.primary a { color: var(--header-text) !important; }
+.card, .contact-card { background: var(--card) !important; color: var(--text) !important; }
+body, p, li, h1, h2, h3, h4, a { color: var(--text) !important; }
+
+/* Focus styles for keyboard users */
+a:focus, button:focus, .hamburger:focus {
+  outline: 3px solid rgba(90,50,180,0.12);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px var(--focus-ring);
 }
 
 /* Additional image helpers (if you ever use img inside .photo) */
