@@ -1,4 +1,3 @@
-
 :root{
   --purple-1:#0f0436;
   --purple-2:#3a0ca3;
@@ -9,11 +8,31 @@
   --muted:#eae6f8;
   --glass: rgba(255,255,255,0.06);
 }
+
+/* Reset / base */
 *{box-sizing:border-box}
 html{height:100%;}
-body{min-height:100%;display:flex;flex-direction:column;margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--black);background:linear-gradient(180deg,var(--white),#fbf8ff)}
+body{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  margin:0;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  color:var(--black);
+  background:linear-gradient(180deg,var(--white),#fbf8ff);
+}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-header.site-header{position:sticky;top:0;z-index:60;background:linear-gradient(135deg,var(--purple-2),var(--black));color:var(--white);backdrop-filter: blur(6px);box-shadow:0 6px 20px rgba(10,8,20,0.45);}
+
+/* header */
+header.site-header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:linear-gradient(135deg,var(--purple-2),var(--black));
+  color:var(--white);
+  backdrop-filter: blur(6px);
+  box-shadow:0 6px 20px rgba(10,8,20,0.18);
+}
 .site-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
 .brand{display:flex;align-items:center;gap:14px}
 .logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),var(--gold));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#111}
@@ -42,12 +61,43 @@ nav.primary a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)
 
 /* founder */
 .founder{display:flex;gap:20px;align-items:flex-start}
-.photo{width:220px;height:220px;border-radius:12px;background:linear-gradient(180deg,#eee,#ddd);border:6px solid rgba(58,12,163,0.09);box-shadow:0 12px 40px rgba(58,12,163,0.12);background-size:contain;background-position:center}
+.photo{
+  width:220px;
+  height:220px;
+  border-radius:12px;
+  background:linear-gradient(180deg,#eee,#ddd);
+  border:6px solid rgba(58,12,163,0.09);
+  box-shadow:0 12px 40px rgba(58,12,163,0.12);
+  background-size:contain !important;
+  background-repeat:no-repeat;
+  background-position:center;
+}
 .bio{flex:1}
 
 /* gallery */
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.card-photo{border-radius:8px;background:#111;background-size:contain;background-position:center;border:1px solid rgba(0,0,0,0.08);overflow:hidden}
+
+/* Card wrapper for images (gives space and shape to the image) */
+.card-photo{
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.08);
+  overflow:hidden;
+  background:transparent;
+
+  /* modern aspect ratio to ensure visible space */
+  aspect-ratio:16/9;
+  min-height:160px; /* fallback for older browsers */
+  display:block;
+}
+
+/* responsive images inside the card */
+img.responsive {
+  width:100%;
+  height:100%;
+  object-fit:cover; /* fills the card while preserving crop */
+  display:block;
+  -o-object-fit:cover;
+}
 
 /* contact */
 .contact-row{display:flex;gap:18px}
@@ -76,7 +126,6 @@ footer.site-footer{margin-top:24px;padding:18px 0;background:linear-gradient(90d
 .muted{color:#666;font-size:0.95rem}
 hr.hr{height:1px;background:linear-gradient(90deg,transparent,var(--muted),transparent);margin:18px 0;border-radius:2px}
 
-
 /* Dark Mode Toggle */
 :root {
   --bg: #ffffff;
@@ -96,17 +145,7 @@ body {
   background: var(--card);
 }
 
-/* Responsive full images */
-img.responsive {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
+/* Additional image helpers (if you ever use img inside .photo) */
+.photo img { width:100%; height:100%; object-fit:cover; display:block; }
 
-/* Founder photo update */
-.photo {
-  background-size: contain !important;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
+/* End of file */
