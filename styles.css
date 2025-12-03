@@ -17,6 +17,9 @@
   --glass: rgba(0,0,0,0.06);
 
   --focus-ring: rgba(58,12,163,0.18);
+
+  /* Mobile nav background */
+  --mobile-bg: #000000; /* black for light mode */
 }
 
 /* Dark mode variables */
@@ -31,6 +34,8 @@
   --border: rgba(255,255,255,0.06);
   --glass: rgba(255,255,255,0.04);
   --focus-ring: rgba(181,139,255,0.18);
+
+  --mobile-bg: var(--purple-2); /* purple for dark mode */
 }
 
 /* Reset / base */
@@ -96,7 +101,7 @@ nav.primary a:focus{
   border-radius:8px;
   touch-action:manipulation;
   z-index:90;
-  background:transparent; /* transparent again */
+  background:transparent;
 }
 .hamburger:active{transform:translateY(1px)}
 .hamburger div{width:28px;height:3px;background:var(--header-text);border-radius:2px;}
@@ -104,15 +109,27 @@ nav.primary a:focus{
 /* Mobile nav dropdown */
 #mobileNav{
   position:absolute;
-  right:8px;
-  top:72px;
+  right:8px;          /* aligns under hamburger stack */
+  top:72px;           /* same height as header */
   z-index:70;
   display:none;
   transition:all .25s;
   border-radius:8px;
   overflow:hidden;
+  min-width:180px;
+  background: var(--mobile-bg);
 }
 #mobileNav.open{display:block}
+
+#mobileNav a {
+  display:block;
+  padding:10px;
+  color:#ffffff;
+  text-decoration:none;
+}
+#mobileNav a:hover {
+  background:rgba(255,255,255,0.08);
+}
 
 /* HERO */
 .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;padding:60px 0}
@@ -207,7 +224,4 @@ footer.site-footer .container div{color:#dcd6ff}
 /* responsive */
 @media (max-width:900px){
   .hero{grid-template-columns:1fr; padding:40px 0}
-  .hamburger{display:flex}
-  nav.primary{display:none}
-  .founder{flex-direction:column}
-  .gallery{grid
+  .hamburger{display:flex
