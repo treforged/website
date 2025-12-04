@@ -175,22 +175,30 @@ nav.primary a:focus{
 .section-title h2{ margin: 0; color: var(--purple-2); max-width: 100%; }
 
 /* founder */
-.founder{ display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
-.photo{
-  width: 220px; height: 220px; border-radius: 12px;
+.founder {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* allow wrapping on smaller screens */
+}
+.photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 12px;
   border: 6px solid rgba(58,12,163,0.09);
   box-shadow: 0 12px 40px rgba(58,12,163,0.12);
   background-size: cover !important;
   background-repeat: no-repeat;
   background-position: center;
 }
-.bio{ flex: 1; }
+.bio { flex: 1; max-width: 100%; }
 
 /* gallery */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  max-width: 100%;
 }
 .card-photo {
   border-radius: 8px;
@@ -225,13 +233,14 @@ img.responsive {
 }
 
 /* contact */
-.contact-row { display: flex; gap: 18px; }
+.contact-row { display: flex; gap: 18px; flex-wrap: wrap; }
 .contact-card {
   flex: 1;
   padding: 16px;
   border-radius: 10px;
   background: linear-gradient(180deg, var(--card), #fbf8ff);
   border: 1px solid var(--border);
+  max-width: 100%;
 }
 
 /* footer */
@@ -288,6 +297,7 @@ nav.primary a,
   .kicker { font-size: 0.85rem; padding: 4px 6px; }
   nav.primary a { padding: 8px 6px; font-size: 0.95rem; }
   #mobileNav a { padding: 10px 12px; font-size: 0.95rem; }
+  .container { padding: 0 12px; } /* shrink padding on very small screens */
 }
 
 /* Utility: ensure long nav labels wrap */
