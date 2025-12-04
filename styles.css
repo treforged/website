@@ -194,8 +194,12 @@ nav.primary a:focus{
 .bio{flex:1}
 
 /* gallery */
-.gallery{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.card-photo{
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.card-photo {
   border-radius: 8px;
   border: 1px solid var(--border);
   overflow: hidden;
@@ -217,7 +221,7 @@ img.responsive {
 }
 
 /* Home hero embedded image */
-.home-hero-image{
+.home-hero-image {
   width: 100%;
   height: auto;
   border-radius: 12px;
@@ -228,22 +232,36 @@ img.responsive {
 }
 
 /* contact */
-.contact-row{ display: flex; gap: 18px; }
-.contact-card{ flex: 1; padding: 16px; border-radius: 10px; background: linear-gradient(180deg, var(--card), #fbf8ff); border: 1px solid var(--border); }
+.contact-row { display: flex; gap: 18px; }
+.contact-card {
+  flex: 1;
+  padding: 16px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--card), #fbf8ff);
+  border: 1px solid var(--border);
+}
 
 /* footer */
-footer.site-footer{
-  margin-top: 24px; padding: 18px 0;
+footer.site-footer {
+  margin-top: 24px;
+  padding: 18px 0;
   background: linear-gradient(90deg, #050014, #0b0616);
   color: var(--footer-text, #dcd6ff);
   flex-shrink: 0;
 }
-footer.site-footer .container div{ color: #dcd6ff; }
+footer.site-footer .container div { color: #dcd6ff; }
 
 /* Accessibility & text wrapping */
-h1, h2, h3, h4, p, .muted, nav.primary a, #mobileNav a {
+.hero-title,
+.hero-sub,
+.section-title h2,
+p,
+.muted,
+nav.primary a,
+#mobileNav a {
   word-wrap: break-word;
   overflow-wrap: break-word;
+  white-space: normal;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -262,18 +280,16 @@ h1, h2, h3, h4, p, .muted, nav.primary a, #mobileNav a {
   #mobileNav { top: 64px; right: 8px; min-width: 200px; }
 }
 
-/* Narrow phones and large text settings */
 @media (max-width: 520px) {
   .gallery { grid-template-columns: 1fr; }
   .cta-row { flex-direction: column; gap: 8px; }
   .btn { width: 100%; text-align: center; }
-  .hero-title { font-size: 22px; line-height: 1.12; }
+  .hero-title { font-size: 22px; line-height: 1.2; }
   .hero-sub, p, .muted { font-size: 0.98rem; }
   .brand h1 { font-size: 1rem; }
   #mobileNav { min-width: 160px; right: 8px; top: 64px; }
 }
 
-/* Extra small screens and large accessibility text */
 @media (max-width: 420px) {
   .hero-title { font-size: 20px; }
   .kicker { font-size: 0.85rem; padding: 4px 6px; }
@@ -281,14 +297,20 @@ h1, h2, h3, h4, p, .muted, nav.primary a, #mobileNav a {
   #mobileNav a { padding: 10px 12px; font-size: 0.95rem; }
 }
 
-/* Utility: ensure long nav labels wrap on very large system text sizes */
+/* Utility: ensure long nav labels wrap */
 nav.primary a, #mobileNav a {
   white-space: normal;
   word-break: break-word;
 }
 
 /* Small visual polish */
-hr.hr { border: none; height: 1px; background: rgba(0,0,0,0.04); margin: 18px 0; border-radius: 1px; }
+hr.hr {
+  border: none;
+  height: 1px;
+  background: rgba(0,0,0,0.04);
+  margin: 18px 0;
+  border-radius: 1px;
+}
 
 /* Focus states for keyboard users */
 a:focus, button:focus, .hamburger:focus {
