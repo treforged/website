@@ -346,17 +346,21 @@ a:focus, button:focus, .hamburger:focus {
   border-radius: 8px;
 }
 
-/* --- Dark mode overrides --- */
-
-/* Home page subtitle and Featured Content heading */
-.dark .hero-sub {
-  color: var(--purple-2) !important;
+/* Dark mode overrides for home hero section */
+.dark #home .hero-title {
+  color: var(--purple-2) !important; /* purple for subtitle heading */
 }
+
+.dark #home .hero-sub {
+  color: #ffffff !important; /* white for body text */
+}
+
+/* Featured Content heading stays purple */
 .dark .hero-card h3 {
   color: var(--purple-2) !important;
 }
 
-/* Home page hero card body text */
+/* Hero card body text (first paragraph) stays white */
 .dark .hero-card p {
   color: #ffffff !important;
 }
