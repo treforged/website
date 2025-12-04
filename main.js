@@ -147,3 +147,28 @@
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
   });
 })();
+
+// --- Image popup (lightbox) ---
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("modalImage");
+const captionText = document.getElementById("caption");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll(".popup-img").forEach(img => {
+  img.addEventListener("click", function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.textContent = this.alt;
+  });
+});
+
+closeBtn.addEventListener("click", function(){
+  modal.style.display = "none";
+});
+
+// Close modal on outside click
+modal.addEventListener("click", function(e){
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
