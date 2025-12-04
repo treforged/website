@@ -282,12 +282,30 @@ nav.primary a,
   #mobileNav { top: 64px; right: 8px; min-width: 200px; }
 }
 
+/* Collapse services grid earlier */
+@media (max-width: 768px) {
+  .grid-3 {
+    grid-template-columns: 1fr; /* stack all services vertically */
+    gap: 20px;
+  }
+  .hero {
+    grid-template-columns: 1fr; /* stack hero text/image earlier */
+    gap: 16px;
+    padding: 24px 0;
+  }
+  .home-hero-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 520px) {
   .gallery { grid-template-columns: 1fr; }
   .cta-row { flex-direction: column; gap: 8px; }
   .btn { width: 100%; text-align: center; }
   .hero-title { font-size: 22px; line-height: 1.2; }
-  .hero-sub, p, .muted { font-size: 0.98rem; }
+  .hero-sub, p, .muted { font-size: 0.95rem; }
   .brand h1 { font-size: 1rem; }
   #mobileNav { min-width: 160px; right: 8px; top: 64px; }
 }
@@ -298,6 +316,12 @@ nav.primary a,
   nav.primary a { padding: 8px 6px; font-size: 0.95rem; }
   #mobileNav a { padding: 10px 12px; font-size: 0.95rem; }
   .container { padding: 0 12px; } /* shrink padding on very small screens */
+}
+
+@media (max-width: 375px) { /* iPhone 15 Pro width */
+  .container { padding: 0 10px; }
+  .hero-title { font-size: 18px; line-height: 1.25; }
+  .hero-sub { font-size: 0.9rem; }
 }
 
 /* Utility: ensure long nav labels wrap */
