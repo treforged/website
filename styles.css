@@ -350,20 +350,20 @@ a:focus, button:focus, .hamburger:focus {
 
 /* Home page subtitle and Featured Content heading */
 .dark .hero-sub {
-  color: var(--purple-2);
+  color: var(--purple-2) !important;
 }
 .dark .hero-card h3 {
-  color: var(--purple-2);
+  color: var(--purple-2) !important;
 }
 
 /* Home page hero card body text */
 .dark .hero-card p {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 /* Contact page cards match services feature background */
 .dark .contact-card {
-  background: rgba(58,12,163,0.03); /* same as .feature background */
+  background: rgba(58,12,163,0.03);
   border: 1px solid var(--border);
 }
 
