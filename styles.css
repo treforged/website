@@ -40,7 +40,7 @@
 
 /* Reset / base */
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { height: 100%; overflow-x: hidden; } /* prevent horizontal scroll */
 body{
   min-height: 100%;
   display: flex;
