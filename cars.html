@@ -4,10 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Cars — Tre Forged</title>
-
-  <!-- favicon -->
-  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%23b58bff'/><stop offset='1' stop-color='%23d4af37'/></linearGradient></defs><rect width='64' height='64' rx='10' fill='url(%23g)'/><text x='50%' y='56%' font-size='28' font-family='Inter,Arial,Helvetica,sans-serif' font-weight='700' text-anchor='middle' fill='%23111'>TF</text></svg>">
-
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -46,7 +42,7 @@
   </nav>
 
   <style>
-    /* mobile nav styles (inline to ensure visibility) */
+    /* mobile nav styles */
     #mobileNav{position:fixed;left:0;right:0;top:72px;z-index:70;display:none;transition:all .25s}
     #mobileNav.open{display:block}
   </style>
@@ -58,26 +54,33 @@
     <p class="muted">Curated showcases and acquisition stories.</p>
     <div class="gallery" style="margin-top:12px">
       <div class="card-photo reveal">
-        <img src="assets/car1.jpg" alt="Featured car 1" class="responsive">
+        <img src="assets/car1.jpg" alt="Featured car 1" class="responsive popup-img">
       </div>
       <div class="card-photo reveal">
-        <img src="assets/car2.jpg" alt="Featured car 2" class="responsive">
+        <img src="assets/car2.jpg" alt="Featured car 2" class="responsive popup-img">
       </div>
       <div class="card-photo reveal">
-        <img src="assets/car3.JPG" alt="Featured car 3" class="responsive">
+        <img src="assets/car3.JPG" alt="Featured car 3" class="responsive popup-img">
       </div>
       <div class="card-photo reveal">
-        <img src="assets/car4.jpg" alt="Featured car 4" class="responsive">
+        <img src="assets/car4.jpg" alt="Featured car 4" class="responsive popup-img">
       </div>
       <div class="card-photo reveal">
-        <img src="assets/car5.jpg" alt="Featured car 5" class="responsive">
+        <img src="assets/car5.jpg" alt="Featured car 5" class="responsive popup-img">
       </div>
       <div class="card-photo reveal">
-        <img src="assets/car6.jpg" alt="Featured car 6" class="responsive">
+        <img src="assets/car6.jpg" alt="Featured car 6" class="responsive popup-img">
       </div>
     </div>
   </section>
 </main>
+
+<!-- Modal for popup -->
+<div id="imgModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+  <div id="caption"></div>
+</div>
 
 <footer class="site-footer">
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
@@ -87,5 +90,30 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+  // Image popup (lightbox)
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImage");
+  const captionText = document.getElementById("caption");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll(".popup-img").forEach(img => {
+    img.addEventListener("click", function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.textContent = this.alt;
+    });
+  });
+
+  closeBtn.addEventListener("click", function(){
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", function(e){
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+</script>
 </body>
 </html>
